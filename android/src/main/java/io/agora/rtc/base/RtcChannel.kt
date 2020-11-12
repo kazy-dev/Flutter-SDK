@@ -22,6 +22,10 @@ class IRtcChannel {
 
         fun joinChannelWithUserAccount(params: Map<String, *>, callback: Callback)
 
+//        fun setExternalVideoSource(params: Map<String, *>, callback: Callback)
+//
+//        fun pushExternalVideoFrame(params: Map<String, *>, callback: Callback)
+
         fun leaveChannel(params: Map<String, *>, callback: Callback)
 
         fun renewToken(params: Map<String, *>, callback: Callback)
@@ -33,6 +37,8 @@ class IRtcChannel {
         fun unpublish(params: Map<String, *>, callback: Callback)
 
         fun getCallId(params: Map<String, *>, callback: Callback)
+
+
     }
 
     interface RtcAudioInterface {
@@ -159,6 +165,14 @@ class RtcChannelManager(
     override fun joinChannelWithUserAccount(params: Map<String, *>, callback: Callback) {
         callback.code(this[params["channelId"] as String]?.joinChannelWithUserAccount(params["token"] as? String, params["userAccount"] as String, mapToChannelMediaOptions(params["options"] as Map<*, *>)))
     }
+
+//    override fun setExternalVideoSource(params: Map<String, *>, callback: Callback) {
+//        callback.code(this[params["channelId"] as String]?.joinChannelWithUserAccount(params["token"] as? String, params["userAccount"] as String, mapToChannelMediaOptions(params["options"] as Map<*, *>)))
+//    }
+//
+//    override fun pushExternalVideoFrame(params: Map<String, *>, callback: Callback) {
+//        callback.code(this[params["channelId"] as String]?(params["token"] as? String, params["userAccount"] as String, mapToChannelMediaOptions(params["options"] as Map<*, *>)))
+//    }
 
     override fun leaveChannel(params: Map<String, *>, callback: Callback) {
         callback.code(this[params["channelId"] as String]?.leaveChannel())

@@ -4,6 +4,7 @@ import android.content.Context
 import io.agora.rtc.*
 import io.agora.rtc.internal.EncryptionConfig
 import io.agora.rtc.models.UserInfo
+import io.agora.rtc.video.AgoraVideoFrame
 
 class IRtcEngine {
     interface RtcEngineInterface : RtcUserInfoInterface, RtcAudioInterface, RtcVideoInterface,
@@ -57,6 +58,10 @@ class IRtcEngine {
         fun getUserInfoByUserAccount(params: Map<String, *>, callback: Callback)
 
         fun getUserInfoByUid(params: Map<String, *>, callback: Callback)
+
+        fun setExternalVideoSource(params: Map<String, *>, callback: Callback)
+
+        fun pushExternalVideoFrame(params: Map<String, *>, callback: Callback)
     }
 
     interface RtcAudioInterface {
@@ -409,6 +414,27 @@ class RtcEngineManager(
 
     override fun joinChannelWithUserAccount(params: Map<String, *>, callback: Callback) {
         callback.code(engine?.joinChannelWithUserAccount(params["token"] as? String, params["channelName"] as String, params["userAccount"] as String))
+    }
+
+    override fun pushExternalVideoFrame(params: Map<String, *>, callback: Callback) {
+//        val frame = AgoraVideoFrame()
+//        frame.textureID = 1
+//        frame.format = AgoraVideoFrame.BUFFER_TYPE_TEXTURE
+//        frame.transform = transform
+//        frame.stride = mCameraHelper.getPreviewWidth()
+//        frame.height = mCameraHelper.getPreviewHeight()
+//        frame.buf = byteArray
+//        frame.timeStamp = System.currentTimeMillis()
+//        engine?.pushExternalVideoFrame(frame)
+//        callback.code(1)
+    }
+
+    override fun setExternalVideoSource(params: Map<String, *>, callback: Callback) {
+//        val enable = params["enable"] as? Boolean ?: true
+//        val useTexture = params["useTexture"] as? Boolean ?: false
+//        val pushMode = params["pushMode"] as? Boolean ?: true
+//        engine?.setExternalVideoSource(enable, useTexture, pushMode)
+//        callback.code(1)
     }
 
     override fun getUserInfoByUserAccount(params: Map<String, *>, callback: Callback) {
