@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:flutter/services.dart';
 
@@ -84,6 +85,25 @@ class RtcEngine with RtcEngineInterface {
     });
     _engine = RtcEngine._();
     return _engine;
+  }
+
+  @override
+  Future<void> setExternalVideoSource(bool enable, bool useTexture, bool pushMode) {
+    return _invokeMethod('setExternalVideoSource', {
+      'enable': enable,
+      'useTexture': useTexture,
+      'pushMode': pushMode,
+    });
+  }
+
+  @override
+  Future<void> pushExternalVideoFrame(List<Float> transform, int stride, int height, List<Uint8> byteArray) {
+    return _invokeMethod('pushExternalVideoFrame', {
+      'transform': transform,
+      'stride': stride,
+      'height': height,
+      'byteArray': byteArray
+    });
   }
 
   @override
@@ -1128,6 +1148,11 @@ mixin RtcUserInfoInterface {
 }
 
 mixin RtcAudioInterface {
+
+  Future<void> setExternalVideoSource(bool enable, bool useTexture, bool pushMode);
+
+  Future<void> pushExternalVideoFrame(List<Float> transform, int stride, int height, List<Uint8> byteArray);
+
   /// Enables the audio module.
   ///
   /// The audio module is enabled by default.
